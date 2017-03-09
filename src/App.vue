@@ -1,63 +1,16 @@
 <template>
-	<div id="app">
-		<loading v-if="loading"></loading>
-		<NavHeader v-show="headShow"></NavHeader>
-		<transition name="slide-down">
-			<keep-alive>
-	        	<router-view class="router-view"></router-view>
-	      	</keep-alive>
-		</transition>
-		<FooterView v-show="footerShow"></FooterView>
-	</div>
+    <div>
+        <NavHeader></NavHeader>
+    </div>
 </template>
 <script>
-	import NavHeader from './components/Nav.vue'
-	import FooterView from './components/Footer.vue'
+    import NavHeader from './components/Nav.vue'
 
-	import Home from './components/Home.vue'
-
-	import {mapGetters} from 'vuex'
-
-	export default{
-		computed:mapGetters([
-			'headShow',
-			'loading',
-			'footerShow'
-		]),
-		mounted(){
-			var path=this.$route.path.substring(1);
-			this.headerChange(path);
-			this.footerChange(path);
-		},
-		watch:{
-			$route(to){
-				var path=to.path.substring(1);
-				this.headerChange(path);
-				this.footerChange(path);
-			}
-		},
-		methods:{
-			headerChange(path){
-				if(path=='user-info' || path=='user-reg' || path=='user-login' || path.indexOf('article')!=-1){
-					this.$store.dispatch('SHOW_HEAD_FAIL')
-				}else{
-					this.$store.dispatch('SHOW_HEAD_SUCC')
-				}
-			},
-			footerChange(path){
-				if(path.indexOf('article')==-1){
-					this.$store.dispatch('showFooter');
-				}else{
-					this.$store.dispatch('hideFooter');
-				}
-			}
-		},
-		components:{
-			Home,
-			NavHeader,
-			FooterView
-		}
-	}
+    export default{
+        components:{
+            NavHeader
+        }
+    }
 </script>
 <style>
 	.slide-up-enter-active, .slide-up-leave-active {

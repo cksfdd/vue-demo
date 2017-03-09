@@ -9,14 +9,15 @@ import routes from './routeConfig.js'
 
 import filters from './filters'
 
-//Vue.filter(名字,函数)
 //循环遍历所有过滤器
+//Vue.filter(名字,函数)
 Object.keys(filters).forEach(key => Vue.filter(key, filters[key]))
 
 Vue.use(VueRouter);
 Vue.use(Loading);
 
-require('./assets/css/base.css'); //引入全局的base文件
+//引入全局的base文件
+require('./assets/css/base.css');
 
 const router = new VueRouter({
     mode: 'history', //切换路径模式，变成history模式
@@ -26,25 +27,30 @@ const router = new VueRouter({
 
 //axios的一些配置，比如发送请求显示loading，请求回来loading消失之类的
 
-axios.interceptors.request.use(function (config) {  //配置发送请求的信息
+//配置发送请求的信息
+axios.interceptors.request.use(function (config) {
     stores.dispatch('showLoading')
     return config;
 }, function (error) {
     return Promise.reject(error);
 });
 
-axios.interceptors.response.use(function (response) { //配置请求回来的信息
+//配置请求回来的信息
+axios.interceptors.response.use(function (response) {
     stores.dispatch('hideLoading')
     return response;
 }, function (error) {
-
     return Promise.reject(error);
 });
 
-// axios.defaults.baseURL = (process.env.NODE_ENV !== 'production' ? config.dev.httpUrl : config.build.httpUrl);//配置请求根路径
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';//设置post头部信息
+//配置请求根路径
+// axios.defaults.baseURL = (process.env.NODE_ENV !== 'production' ? config.dev.httpUrl : config.build.httpUrl);
 
-Vue.prototype.$http = axios;  //把axios对象挂到Vue原型上,其他页面在使用axios的时候直接->this.$http就可以了
+//设置post头部信息
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+//把axios对象挂到Vue原型上,其他页面在使用axios的时候直接->this.$http就可以了
+Vue.prototype.$http = axios;
 
 new Vue({
     el: '#app',
