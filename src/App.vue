@@ -1,18 +1,22 @@
 <template>
     <div>
         <NavHeader></NavHeader>
+        <router-view class="router-view"></router-view>
+        <FooterView></FooterView>
     </div>
 </template>
 <script>
     import NavHeader from './components/Nav.vue'
-
+    import FooterView from'./components/Footer.vue'
     export default{
         components:{
-            NavHeader
+            NavHeader,
+            FooterView
         }
     }
 </script>
 <style>
+    @import './assets/css/index.css';
 	.slide-up-enter-active, .slide-up-leave-active {
 	  transition: all .4s cubic-bezier(0, 1.2, 1, 0.5);
 	  opacity: .7;
