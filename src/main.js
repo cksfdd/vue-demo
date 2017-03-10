@@ -29,7 +29,7 @@ const router = new VueRouter({
 
 //配置发送请求的信息
 axios.interceptors.request.use(function (config) {
-    stores.dispatch('showLoading')
+    stores.dispatch('showLoading');
     return config;
 }, function (error) {
     return Promise.reject(error);
@@ -37,7 +37,7 @@ axios.interceptors.request.use(function (config) {
 
 //配置请求回来的信息
 axios.interceptors.response.use(function (response) {
-    stores.dispatch('hideLoading')
+    stores.dispatch('hideLoading');
     return response;
 }, function (error) {
     return Promise.reject(error);
@@ -57,4 +57,4 @@ new Vue({
     router,
     store: stores,
     render: h => h(App)
-})
+});

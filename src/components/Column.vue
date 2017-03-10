@@ -1,6 +1,5 @@
 <template>
     <div class="content mt30">
-        <Slider></Slider>
         <div class="newsList">
             <ul>
                 <li v-for="(item,index) in arrList">
@@ -14,28 +13,24 @@
     </div>
 </template>
 <script>
-    import Slider from './Slider.vue';
-
     export default{
         data(){
             return {
-                arrList :[]
+                arrList: []
             }
         },
-        components:{
-            Slider
-        },
+        components: {},
         mounted(){
-            this.$store.dispatch('SHOW_HEAD_SUCC');
             this.fetchData();
+            this.$store.dispatch('SHOW_HEAD_SUCC');
         },
-        methods:{
+        methods: {
             fetchData(){
-                let _this=this;
-                this.$http.get('src/data/index.data').then((res)=>{
+                let _this = this;
+                this.$http.get('src/data/follow.data').then((res) => {
                     console.log(res);
-                    _this.arrList=res.data;
-                }).catch((rej)=>{
+                    _this.arrList = res.data;
+                }).catch((rej) => {
                     console.log(rej)
                 });
             }
@@ -44,7 +39,8 @@
 </script>
 <style>
     @import '../assets/css/index.css';
-    .mt30{
-        margin-top:30px;
+
+    .mt30 {
+        margin-top: 30px;
     }
 </style>

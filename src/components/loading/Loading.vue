@@ -1,6 +1,6 @@
 <template>
-    <div class="zns-loading">
-    	<div class="zns-loading-inner">
+    <div class="loading">
+    	<div class="loading-inner">
 	    	<div class="ball-spin-fade-loader">
 		      <div></div>
 		      <div></div>
@@ -15,15 +15,14 @@
     </div>
 </template>
 <style scoped>
-	.zns-loading{
+	.loading{
 		position: fixed;
 		z-index: 1000;
 		width:100%;
 		height:90px;
 	}
-	.zns-loading-inner{
+	.loading-inner{
 		display:flex;
-	    display: flex;
 	    height: 100px;
 	    align-items: center;
 	    justify-content: center;
